@@ -1,7 +1,7 @@
 {
   "name": "Đăng ký môn học HCMUTE",
   "description": "Extension hỗ trợ đăng ký môn học tự dộng HCMUTE",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "homepage_url": "https://www.facebook.com/camxuc.khong.37",
   "manifest_version": 2,
   "icons": {
@@ -9,6 +9,7 @@
     "48": "images/hcmute.png",
     "128": "images/hcmute.png"
   },
+  "web_accessible_resources": ["images/loading.gif"],
   "content_scripts": [
     {
       "matches": [
@@ -24,6 +25,7 @@
         "css/style.css",
         "css/bootstrap.min.css"
       ]
+      
     }
   ]
 }

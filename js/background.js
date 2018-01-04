@@ -94,6 +94,7 @@ function search(searchInput, searchType) {
   xmlHttp.open("POST", 'https://dkmh.hcmute.edu.vn/TraCuuHocPhan', true); // false for synchronous request
   xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlHttp.send("ddlMonHoc=" + searchType + "&txtSearch=" + searchInput + "&btntim=Tìm+kiếm");
+  showLoading();
 }
 
 function getCTDaoTao() {
@@ -127,4 +128,9 @@ function getCTDaoTao() {
   };
   xmlHttp.open("GET", 'https://dkmh.hcmute.edu.vn/ChuongTrinhDaoTao', true); // false for synchronous request
   xmlHttp.send();
+  showLoading();
+}
+
+function showLoading(){
+  document.getElementById("pageContent").innerHTML = '<center><img src="'+ chrome.extension.getURL("images/loading.gif") +'" style="margin: 30px"  height="150px" /></center>';
 }

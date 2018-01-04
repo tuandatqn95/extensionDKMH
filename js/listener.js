@@ -27,6 +27,7 @@ function templateReady() {
         };
         xmlHttp.open("GET", 'https://dkmh.hcmute.edu.vn/DangKiThanhCong/Ketquadangki', true); // false for synchronous request
         xmlHttp.send();
+        showLoading();
     });
 
     document.getElementById("btnCTDaoTao").addEventListener("click", function () {
