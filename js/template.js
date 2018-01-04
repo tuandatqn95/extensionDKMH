@@ -3,11 +3,8 @@ var svList;
 var mssv;
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.onreadystatechange = function () {
-
-  svList = JSON.parse( xmlHttp.responseText );
-  console.log( xmlHttp.responseText);
+  svList = JSON.parse(xmlHttp.responseText);
   if (mssv != null) {
-
     if (svList.indexOf(mssv) >= 0) {
       injectLayout();
     }
@@ -25,12 +22,10 @@ xHttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     var result = xHttp.response;
     var parse = new DOMParser();
-
     var menu = parse.parseFromString(result, "text/html").getElementsByClassName("menu2")[0].getElementsByTagName("span")[0];
     if (menu != null) {
       mssv = menu.innerHTML.substring(2, 10);
       if (svList != null) {
-
         if (svList.indexOf(mssv) >= 0) {
           injectLayout();
         }
@@ -42,8 +37,6 @@ xHttp.onreadystatechange = function () {
     else {
       document.body.innerHTML = '<h3 class="text-center">Bạn chưa đăng nhập</h3>';
     }
-
-
   }
 };
 xHttp.open("GET", 'https://dkmh.hcmute.edu.vn/QuiDinh', true); // false for synchronous request

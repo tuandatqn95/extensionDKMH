@@ -36,8 +36,12 @@ function getURL(maLopHP) {
 
 function run(maLopHP) {
   var time = 0;
-  while (time < 100)
-    time = prompt('Tốc độ (ms/request) càng nhỏ chạy càng nhanh, bản free giới hạn >=1000 \nNhập tốc độ:', '100');
+  while (time <= 999) {
+    time = Number.parseInt( prompt('Tốc độ (ms/request) càng nhỏ chạy càng nhanh, bản free giới hạn >=1000 \nNhập tốc độ:', '100'));
+    if (time == null || Number.isNaN(time))
+      return;
+  }
+
   var resultAlert = document.createElement("div");
   resultAlert.classList.add("alert");
   resultAlert.classList.add("alert-info");
@@ -48,7 +52,7 @@ function run(maLopHP) {
   btnStop.classList.add("pull-right");
   btnStop.id = "STOP_" + maLopHP;
   btnStop.innerText = "STOP";
-  btnStop.style.marginTop = "-5px";
+  btnStop.style.marginTop = "-6px";
   var spanContent = document.createElement("span");
   spanContent.id = "RESULT_" + maLopHP;
   resultAlert.appendChild(btnStop);
@@ -58,7 +62,6 @@ function run(maLopHP) {
 }
 
 function search(searchInput, searchType) {
-  console.log("Search: " + searchInput + "-" + searchType);
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -131,6 +134,6 @@ function getCTDaoTao() {
   showLoading();
 }
 
-function showLoading(){
-  document.getElementById("pageContent").innerHTML = '<center><img src="'+ chrome.extension.getURL("images/loading.gif") +'" style="margin: 30px"  height="150px" /></center>';
+function showLoading() {
+  document.getElementById("pageContent").innerHTML = '<center><img src="' + chrome.extension.getURL("images/loading.gif") + '" style="margin: 30px"  height="150px" /></center>';
 }
