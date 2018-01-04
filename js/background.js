@@ -37,7 +37,7 @@ function getURL(maLopHP) {
 function run(maLopHP) {
   var time = 0;
   while (time <= 999) {
-    time = Number.parseInt( prompt('Tốc độ (ms/request) càng nhỏ chạy càng nhanh, bản free giới hạn >=1000 \nNhập tốc độ:', '100'));
+    time = Number.parseInt(prompt('Tốc độ (ms/request) càng nhỏ chạy càng nhanh, bản free giới hạn >=1000 \nNhập tốc độ:', '1000'));
     if (time == null || Number.isNaN(time))
       return;
   }
@@ -55,6 +55,7 @@ function run(maLopHP) {
   btnStop.style.marginTop = "-6px";
   var spanContent = document.createElement("span");
   spanContent.id = "RESULT_" + maLopHP;
+  spanContent.innerHTML = '<strong>' + maLopHP + '</strong>';
   resultAlert.appendChild(btnStop);
   resultAlert.appendChild(spanContent);
   document.getElementById("pageResult").appendChild(resultAlert);
@@ -132,8 +133,4 @@ function getCTDaoTao() {
   xmlHttp.open("GET", 'https://dkmh.hcmute.edu.vn/ChuongTrinhDaoTao', true); // false for synchronous request
   xmlHttp.send();
   showLoading();
-}
-
-function showLoading() {
-  document.getElementById("pageContent").innerHTML = '<center><img src="' + chrome.extension.getURL("images/loading.gif") + '" style="margin: 30px"  height="150px" /></center>';
 }

@@ -7,3 +7,19 @@ function injectLayout() {
       '</div></div><footer class="container-fluid text-center"><p>Bản quyền (C) 2018 TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP.HCM - Phát triển bởi IT-UTE</p></footer>';
     templateReady();
   }
+
+  
+function showLoading() {
+  document.getElementById("pageContent").innerHTML = '<center><img src="' + chrome.extension.getURL("images/loading.gif") + '" style="margin: 30px"  height="150px" /></center>';
+}
+
+function notLogin(){
+  document.body.innerHTML = '<h3 class="text-center">Bạn chưa đăng nhập</h3>'+
+  '<div class="row text-center" style="margin: 20px 0;">'+
+  '<a href="/" class="btn btn-warning" style="margin-right: 20px;">Quay về trang chủ</a>';
+  '</div>';
+}
+
+function notRegister(){
+  document.body.innerHTML = '<h3 class="text-center">Tài khoản chưa được đăng ký. Vui lòng liên hệ vối tác giả!</h3>';
+}

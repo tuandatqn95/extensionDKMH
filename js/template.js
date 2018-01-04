@@ -9,7 +9,7 @@ xmlHttp.onreadystatechange = function () {
       injectLayout();
     }
     else {
-      document.body.innerHTML = '<h3 class="text-center">Tài khoản chưa được đăng ký</h3>';
+      notRegister();
     }
   }
 };
@@ -30,12 +30,12 @@ xHttp.onreadystatechange = function () {
           injectLayout();
         }
         else {
-          document.body.innerHTML = '<h3 class="text-center">Tài khoản chưa được đăng ký</h3>';
+          notRegister();
         }
       }
     }
     else {
-      document.body.innerHTML = '<h3 class="text-center">Bạn chưa đăng nhập</h3>';
+      notLogin();
     }
   }
 };
