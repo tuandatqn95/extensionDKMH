@@ -9,13 +9,10 @@ function httpGet(theUrl) {
 }
 
 function execute(maLopHP, time) {
-  var url = getURL(maLopHP);
-  var i = 0; var interval = setInterval(function () {
+  var url = getURL(maLopHP), i = 0; var interval = setInterval(function () {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("RESULT_" + maLopHP).innerHTML = "<strong>" + maLopHP + ": </strong>" + xmlHttp.responseText + (++i);
-      }
+      if (this.readyState == 4 && this.status == 200)         document.getElementById("RESULT_" + maLopHP).innerHTML = "<strong>" + maLopHP + ": </strong>" + xmlHttp.responseText + (++i);
     };
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null); return xmlHttp.responseText;
@@ -29,17 +26,16 @@ function execute(maLopHP, time) {
 }
 
 function getURL(maLopHP) {
-  var url = "https://dkmh.hcmute.edu.vn/DangKiHocPhan?StudyUnitID=undefined&CurriculumID="
-    + maHocPhan(maLopHP) + "&Hide=172" + maLopHP + "$3.00$172" + maHocPhan(maLopHP) + "$1$1|&t=0.45331377431484143";
+  var url = "https://dkmh.hcmute.edu.vn/DangKiHocPhan?StudyUnitID=undefined&CurriculumID=" + maHocPhan(maLopHP) + "&Hide=172" + maLopHP + "$3.00$172" + maHocPhan(maLopHP) + "$1$1|&t=0.45331377431484143";
   return url;
 }
 
 function run(maLopHP) {
+  checkAccount();
   var time = 0;
-  while (time <= 999) {
-    time = Number.parseInt(prompt('Tốc độ (ms/request) càng nhỏ chạy càng nhanh, bản free giới hạn >=1000 \nNhập tốc độ:', '1000'));
-    if (time == null || Number.isNaN(time))
-      return;
+  while (time <= 99) {
+    time = Number.parseInt(prompt('Tốc độ (ms/request) càng nhỏ chạy càng nhanh, bản free giới hạn >=1000 \nNhập tốc độ:', '100'));
+    if (time == null || Number.isNaN(time)) return;
   }
 
   var resultAlert = document.createElement("div");
@@ -60,6 +56,7 @@ function run(maLopHP) {
   resultAlert.appendChild(spanContent);
   document.getElementById("pageResult").appendChild(resultAlert);
   execute(maLopHP, time);
+
 }
 
 function search(searchInput, searchType) {
@@ -95,7 +92,7 @@ function search(searchInput, searchType) {
       }
     }
   };
-  xmlHttp.open("POST", 'https://dkmh.hcmute.edu.vn/TraCuuHocPhan', true); // false for synchronous request
+  xmlHttp.open("POST", 'https://dkmh.hcmute.edu.vn/TraCuuHocPhan', true);
   xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlHttp.send("ddlMonHoc=" + searchType + "&txtSearch=" + searchInput + "&btntim=Tìm+kiếm");
   showLoading();
@@ -123,14 +120,13 @@ function getCTDaoTao() {
           td.innerHTML = '<center><button name="' + rows[j].cells[2].innerText + '" class="btn btn-success">Tìm</button</center>';
           rows[j].appendChild(td);
           td.getElementsByTagName("button")[0].addEventListener("click", function () {
-
             search(this.getAttribute("name"), 0);
           });
         }
       };
     }
   };
-  xmlHttp.open("GET", 'https://dkmh.hcmute.edu.vn/ChuongTrinhDaoTao', true); // false for synchronous request
+  xmlHttp.open("GET", 'https://dkmh.hcmute.edu.vn/ChuongTrinhDaoTao', true);
   xmlHttp.send();
   showLoading();
 }
